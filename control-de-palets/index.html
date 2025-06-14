@@ -1,4 +1,21 @@
 
+<section id="copias" style="padding: 1rem; border: 1px solid #ccc; border-radius: 8px; margin-top: 2rem;">
+  <h2>🔐 Copias de Seguridad</h2>
+
+  <p>Usa esta sección para guardar y restaurar tus datos de entregas y devoluciones.</p>
+
+  <div style="margin-top: 1rem;">
+    <button onclick="exportarJSON()" style="padding: 10px 20px; background: green; color: white; border: none; border-radius: 5px;">
+      📤 Exportar Datos (JSON)
+    </button>
+  </div>
+
+  <div style="margin-top: 1.5rem;">
+    <label for="importarJSON" style="display: block; margin-bottom: 0.5rem;">📥 Importar Respaldo (JSON):</label>
+    <input type="file" id="importarJSON" accept="application/json" onchange="importarJSON(this.files[0])" />
+  </div>
+</section>
+
 <script src="app.js"></script>
 <!DOCTYPE html>
 <html lang="es">
