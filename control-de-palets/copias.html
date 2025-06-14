@@ -4,11 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <title>Copias de Seguridad</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    button { margin: 10px 5px; padding: 10px 15px; }
+    #mensaje { margin-top: 15px; font-weight: bold; }
+  </style>
 </head>
 <body>
   <h2>Copias de Seguridad</h2>
   <button onclick="exportarJSON()">Exportar JSON</button>
   <input type="file" id="importarArchivo" accept=".json" onchange="importarJSON()" />
+  <button onclick="cargarDatosEjemplo()">Cargar Datos de Ejemplo</button>
+  <div id="mensaje"></div>
 
   <script>
     function exportarJSON() {
@@ -19,6 +26,7 @@
       a.href = url;
       a.download = 'copias_palets.json';
       a.click();
+      mostrarMensaje('Archivo exportado correctamente.', 'green');
     }
 
     function importarJSON() {
@@ -29,13 +37,30 @@
       lector.onload = function(evento) {
         try {
           const datos = JSON.parse(evento.target.result);
+          if (!Array.isArray(datos)) throw new Error("Formato incorrecto");
           localStorage.setItem('movimientos', JSON.stringify(datos));
-          alert('Datos importados correctamente. Refresca la página para verlos.');
+          mostrarMensaje('Datos importados correctamente. Redirigiendo...', 'green');
+          setTimeout(() => window.location.href = 'index.html', 2000);
         } catch (e) {
-          alert('Error al importar el archivo JSON.');
+          mostrarMensaje('❌ Error al importar el archivo JSON. Verifica el formato.', 'red');
         }
       };
       lector.readAsText(archivo);
+    }
+
+    function cargarDatosEjemplo() {
+      const ejemplo = [
+        { fecha: "2025-06-01", cliente: "BUENAS MIGAS", tipo: "ENTREGA", palet: "NORMAL", cantidad: 10 },
+        { fecha: "2025-06-02", cliente: "SERRA ROCA", tipo: "DEVOLUCIÓN", palet: "NORMAL", cantidad: -5 }
+      ];
+      localStorage.setItem('movimientos', JSON.stringify(ejemplo));
+      mostrarMensaje('Datos de ejemplo cargados. Ahora puedes exportar o verlos en el historial.', 'blue');
+    }
+
+    function mostrarMensaje(texto, color) {
+      const mensaje = document.getElementById('mensaje');
+      mensaje.textContent = texto;
+      mensaje.style.color = color;
     }
   </script>
 </body>
