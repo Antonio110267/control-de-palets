@@ -1,0 +1,1 @@
+// Puedes añadir aquí la lógica general del sitio (por ejemplo, navegación o control de formularios)

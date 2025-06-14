@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Copias de Seguridad</title>
+</head>
+<body>
+  <h2>Copias de Seguridad</h2>
+  <button onclick="exportarJSON()">Exportar JSON</button>
+  <input type="file" id="importarArchivo" accept=".json" onchange="importarJSON()" />
+
+  <script>
+    function exportarJSON() {
+      const datos = localStorage.getItem('movimientos') || '[]';
+      const blob = new Blob([datos], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'copias_palets.json';
+      a.click();
+    }
+
+    function importarJSON() {
+      const archivo = document.getElementById('importarArchivo').files[0];
+      if (!archivo) return;
+
+      const lector = new FileReader();
+      lector.onload = function(evento) {
+        try {
+          const datos = JSON.parse(evento.target.result);
+          localStorage.setItem('movimientos', JSON.stringify(datos));
+          alert('Datos importados correctamente. Refresca la página para verlos.');
+        } catch (e) {
+          alert('Error al importar el archivo JSON.');
+        }
+      };
+      lector.readAsText(archivo);
+    }
+  </script>
+</body>
+</html>
