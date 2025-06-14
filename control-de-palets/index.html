@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="manifest" href="manifest.json" />
+  <title>Control de Palets</title>
+  <style>
+    body { font-family: sans-serif; background: #f5f5f5; margin: 0; padding: 20px; }
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    nav button { margin-right: 10px; }
+    .hidden { display: none; }
+    .card, form { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #ccc; }
+    button { padding: 12px 16px; border: none; border-radius: 6px; cursor: pointer; }
+    .btn-blue { background: #2563eb; color: white; }
+    .btn-green { background: #16a34a; color: white; }
+    .btn-gray { background: #4b5563; color: white; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Control de Palets</h1>
+    <nav>
+      <button onclick="showView('dashboard')">Dashboard</button>
+      <button onclick="showView('entrega')">Registrar Entrega</button>
+    </nav>
+  </header>
+
+  <div id="dashboardView">
+    <div class="card">
+      <h2>Resumen</h2>
+      <p><strong>Palets Normales Pendientes:</strong> 431</p>
+      <p><strong>Palets de Color Pendientes:</strong> 128</p>
+      <p><strong>Valor Estimado Normal:</strong> €4.310</p>
+      <p><strong>Valor Estimado Color:</strong> €2.560</p>
+    </div>
+    <button class="btn-blue" onclick="showView('entrega')">Nueva Entrega de Palets</button>
+  </div>
+
+  <div id="entregaView" class="hidden">
+    <form onsubmit="submitForm(event)">
+      <h2>Registrar Entrega de Palets</h2>
+      <label>Cliente:<input type="text" required /></label>
+      <label>Fecha:<input type="date" required /></label>
+      <label>Palets Normales:<input type="number" min="0" /></label>
+      <label>Palets de Color:<input type="number" min="0" /></label>
+      <label>Notas:<textarea rows="2"></textarea></label>
+      <button type="submit" class="btn-green">Confirmar Entrega</button>
+      <button type="button" class="btn-gray" onclick="showView('dashboard')">Cancelar</button>
+    </form>
+  </div>
+
+  <script>
+    function showView(view) {
+      document.getElementById('dashboardView').classList.toggle('hidden', view !== 'dashboard');
+      document.getElementById('entregaView').classList.toggle('hidden', view !== 'entrega');
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+      alert('Entrega registrada con éxito. (Simulado)');
+      showView('dashboard');
+    }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('serviceWorker.js');
+    }
+  </script>
+</body>
+</html>
