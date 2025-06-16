@@ -1,0 +1,47 @@
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+.sidebar {
+  width: 220px;
+  background-color: #1f2937;
+  color: white;
+  padding: 20px;
+  height: 100vh;
+}
+.sidebar h2 {
+  margin-top: 0;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar ul li {
+  padding: 10px;
+  cursor: pointer;
+}
+.sidebar ul li:hover {
+  background-color: #374151;
+}
+.main {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9fafb;
+}
+.seccion {
+  display: none;
+}
+.seccion.active {
+  display: block;
+}
+input {
+  margin: 5px;
+  padding: 8px;
+  width: 200px;
+}
+button {
+  margin: 5px;
+  padding: 8px 12px;
+}
