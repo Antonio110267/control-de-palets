@@ -1,55 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Control de Palets</title>
-  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="sidebar">
-    <h2>CONTROL DE PALETS</h2>
-    <ul>
-      <li onclick="mostrarSeccion('dashboard')">Dashboard</li>
-      <li onclick="mostrarSeccion('entregas')">Entregas</li>
-      <li onclick="mostrarSeccion('devoluciones')">Devoluciones</li>
-      <li onclick="mostrarSeccion('historial')">Historial</li>
-      <li onclick="mostrarSeccion('saldos')">Saldos</li>
-      <li onclick="mostrarSeccion('backup')">Copias de Seguridad</li>
-    </ul>
-  </div>
-  <div class="main">
-    <div id="dashboard" class="seccion">
-      <h3>Dashboard</h3>
-      <canvas id="chart" height="200"></canvas>
-    </div>
-    <div id="entregas" class="seccion">
-      <h3>Registrar Entrega</h3>
-      <input type="text" id="clienteEntrega" placeholder="Cliente" />
-      <input type="number" id="cantidadEntrega" placeholder="Cantidad" />
-      <button onclick="registrarEntrega()">Guardar Entrega</button>
-    </div>
-    <div id="devoluciones" class="seccion">
-      <h3>Registrar Devolución</h3>
-      <input type="text" id="clienteDevolucion" placeholder="Cliente" />
-      <input type="number" id="cantidadDevolucion" placeholder="Cantidad" />
-      <button onclick="registrarDevolucion()">Guardar Devolución</button>
-    </div>
-    <div id="historial" class="seccion">
-      <h3>Historial</h3>
-      <ul id="listaHistorial"></ul>
-    </div>
-    <div id="saldos" class="seccion">
-      <h3>Saldos por Cliente</h3>
-      <ul id="listaSaldos"></ul>
-    </div>
-    <div id="backup" class="seccion">
-      <h3>Copias de Seguridad</h3>
-      <button onclick="exportBackup()">Exportar</button>
-      <input type="file" id="importFile" onchange="importBackup()" />
-    </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <h1>Control de Palets - Copias de Seguridad</h1>
+  <button onclick="exportBackup()">Exportar Copia de Seguridad</button>
+  <input type="file" id="importFile" onchange="importBackup()"/>
   <script src="script.js"></script>
 </body>
 </html>
